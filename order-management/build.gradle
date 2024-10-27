@@ -1,45 +1,49 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.5'
-	id 'io.spring.dependency-management' version '1.1.6'
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'Dch.Group'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'io.r2dbc:r2dbc-postgresql:0.8.11.RELEASE'
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.flywaydb:flyway-core'
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive' // MongoDB Reactive
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'             // R2DBC (Reactive SQL)
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'                // WebFlux for reactive REST API
+    implementation 'org.springframework.boot:spring-boot-starter-security'               // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'              // JDBC for Flyway migrations
+
+    // R2DBC Postgres driver
+    implementation 'io.r2dbc:r2dbc-postgresql:0.8.11.RELEASE'
+
+    // Flyway for Database Migrations
+    implementation 'org.flywaydb:flyway-core'
+
+    // Lombok for Boilerplate Code Reduction
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Development tools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
