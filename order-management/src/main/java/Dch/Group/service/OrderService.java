@@ -15,18 +15,24 @@ public class OrderService {
     }
 
     public Flux<Order> findAllOrders() {
-        return orderRepository.findAll();
+        return orderRepository.findAll()
+                .filter(Order::getIsActive); // Only return active orders
     }
 
     public Mono<Order> findOrderById(String id) {
-        return orderRepository.findById(id);
+        return orderRepository.findById(id)
+                .filter(Order::getIsActive); // Only return if active
     }
 
     public Mono<Order> saveOrder(Order order) {
         return orderRepository.save(order);
     }
 
-    public Mono<Void> deleteOrder(String id) {
-        return orderRepository.deleteById(id);
+    public Mono<Order> deleteOrder(String id) {
+        return orderRepository.findById(id)
+                .flatMap(order -> {
+                    order.setIsActive(false);
+                    return orderRepository.save(order);
+                });
     }
 }

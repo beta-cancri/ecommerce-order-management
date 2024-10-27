@@ -17,18 +17,25 @@ public class ProductService {
     }
 
     public Flux<Product> findAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findAll()
+                .filter(Product::getIsActive); // Only return active products
     }
 
     public Mono<Product> findProductById(UUID id) {
-        return productRepository.findById(id);
+        return productRepository.findById(id)
+                .filter(Product::getIsActive); // Only return if active
     }
 
     public Mono<Product> saveProduct(Product product) {
         return productRepository.save(product);
     }
 
-    public Mono<Void> deleteProduct(UUID id) {
-        return productRepository.deleteById(id);
+    public Mono<Product> deleteProduct(UUID id) {
+        return productRepository.findById(id)
+                .flatMap(product -> {
+                    product.setIsActive(false);
+                    return productRepository.save(product);
+                });
     }
 }
+

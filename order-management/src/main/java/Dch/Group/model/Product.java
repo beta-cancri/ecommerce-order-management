@@ -15,4 +15,6 @@ public class Product {
     private String description;
     private Double price;
     private Integer stock;
+    private String photo; // Field for the photo URL
+    private Boolean isActive = true; // New field for soft deletion logic
 }
