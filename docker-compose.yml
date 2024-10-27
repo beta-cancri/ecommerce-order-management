@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./order-management
+      dockerfile: Dockerfile  # Dockerfile is already in ./order-management
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - mongodb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ecommerce
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Shelipe2!
+      SPRING_R2DBC_URL: r2dbc:postgresql://postgres:5432/ecommerce
+      SPRING_R2DBC_USERNAME: postgres
+      SPRING_R2DBC_PASSWORD: Shelipe2!
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/ecommerce
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ecommerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Shelipe2!
+    ports:
+      - "5432:5432"
+
+  mongodb:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ecommerce
