@@ -13,7 +13,7 @@ public class Customer {
     private String name;
     private String email;
     private String address;
-    private String password; // Hashed password field
-    private Boolean isAdmin = false; // Field for admin status
-    private Boolean isActive = true; // New field for soft deletion logic
+    private String password; 
+    private Boolean isAdmin = false; 
+    private Boolean isActive = true; 
 }

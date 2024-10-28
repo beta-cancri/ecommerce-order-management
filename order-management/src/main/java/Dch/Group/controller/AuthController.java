@@ -21,6 +21,6 @@ public class AuthController {
     public Mono<ResponseEntity<CustomerDTO>> login(@RequestBody Customer customer) {
         return authService.authenticate(customer.getEmail(), customer.getPassword())
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.status(401).build()); // Unauthorized if authentication fails
+                .defaultIfEmpty(ResponseEntity.status(401).build());
     }
 }

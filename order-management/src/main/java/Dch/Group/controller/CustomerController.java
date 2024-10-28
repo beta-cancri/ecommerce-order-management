@@ -32,7 +32,7 @@ public class CustomerController {
 
     @PostMapping
     public Mono<CustomerDTO> createCustomer(@RequestBody Customer customer) {
-        System.out.println("Received Customer Password: " + customer.getPassword()); // Log received password
+        System.out.println("Received Customer Password: " + customer.getPassword());
         return customerService.saveCustomer(customer)
                 .map(this::convertToDTO);
     }

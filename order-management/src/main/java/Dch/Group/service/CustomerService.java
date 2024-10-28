@@ -21,17 +21,17 @@ public class CustomerService {
 
     public Flux<Customer> findAllCustomers() {
         return customerRepository.findAll()
-                .filter(Customer::getIsActive); // Only return active customers
+                .filter(Customer::getIsActive); 
     }
 
     public Mono<Customer> findCustomerById(UUID id) {
         return customerRepository.findById(id)
-                .filter(Customer::getIsActive); // Only return if active
+                .filter(Customer::getIsActive); 
     }
 
     public Mono<Customer> saveCustomer(Customer customer) {
         String hashedPassword = passwordEncoder.encode(customer.getPassword());
-        System.out.println("Hashed Password: " + hashedPassword); // Log hashed password
+        System.out.println("Hashed Password: " + hashedPassword); 
         customer.setPassword(hashedPassword);
         return customerRepository.save(customer);
     }  

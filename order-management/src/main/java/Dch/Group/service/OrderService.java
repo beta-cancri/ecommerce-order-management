@@ -16,12 +16,12 @@ public class OrderService {
 
     public Flux<Order> findAllOrders() {
         return orderRepository.findAll()
-                .filter(Order::getIsActive); // Only return active orders
+                .filter(Order::getIsActive); 
     }
 
     public Mono<Order> findOrderById(String id) {
         return orderRepository.findById(id)
-                .filter(Order::getIsActive); // Only return if active
+                .filter(Order::getIsActive); 
     }
 
     public Mono<Order> saveOrder(Order order) {

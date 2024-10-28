@@ -19,10 +19,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http.csrf().disable()  // Disable CSRF for testing
-            .cors().configurationSource(corsConfigurationSource()) // Enable CORS with custom configuration
+        http.csrf().disable()  
+            .cors().configurationSource(corsConfigurationSource()) 
             .and()
-            .authorizeExchange().anyExchange().permitAll();  // Allow all requests for now
+            .authorizeExchange().anyExchange().permitAll();  
 
         return http.build();
     }
@@ -30,9 +30,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200")); // Set allowed origins
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Set allowed methods
-        configuration.setAllowedHeaders(List.of("*")); // Allow all headers
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

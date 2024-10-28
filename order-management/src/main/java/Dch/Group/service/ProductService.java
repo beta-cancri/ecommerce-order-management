@@ -18,12 +18,12 @@ public class ProductService {
 
     public Flux<Product> findAllProducts() {
         return productRepository.findAll()
-                .filter(Product::getIsActive); // Only return active products
+                .filter(Product::getIsActive); 
     }
 
     public Mono<Product> findProductById(UUID id) {
         return productRepository.findById(id)
-                .filter(Product::getIsActive); // Only return if active
+                .filter(Product::getIsActive); 
     }
 
     public Mono<Product> saveProduct(Product product) {

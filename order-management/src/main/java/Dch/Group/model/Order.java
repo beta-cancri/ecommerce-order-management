@@ -14,5 +14,5 @@ public class Order {
     private String customerId;
     private List<String> productIds;
     private Double total;
-    private Boolean isActive = true; // New field for soft deletion logic
+    private Boolean isActive = true; 
 }

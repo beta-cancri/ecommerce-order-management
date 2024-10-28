@@ -31,7 +31,7 @@ public class AuthService {
         dto.setEmail(customer.getEmail());
         dto.setAddress(customer.getAddress());
         dto.setIsAdmin(customer.getIsAdmin());
-        dto.setIsActive(customer.getIsActive()); // Added mapping for isActive
+        dto.setIsActive(customer.getIsActive()); 
         return dto;
     }
 }
