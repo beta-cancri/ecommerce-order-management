@@ -31,9 +31,10 @@ public class CustomerService {
 
     public Mono<Customer> saveCustomer(Customer customer) {
         String hashedPassword = passwordEncoder.encode(customer.getPassword());
+        System.out.println("Hashed Password: " + hashedPassword); // Log hashed password
         customer.setPassword(hashedPassword);
         return customerRepository.save(customer);
-    }
+    }  
 
     public Mono<Customer> deleteCustomer(UUID id) {
         return customerRepository.findById(id)

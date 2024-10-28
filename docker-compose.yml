@@ -34,3 +34,14 @@ services:
       - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: ecommerce
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "link182x@gmail.com"    # Replace with your email
+      PGADMIN_DEFAULT_PASSWORD: "Shelipe2!"           # Replace with your password
+    ports:
+      - "8081:80"                                         # Exposes pgAdmin on localhost:8081
+    depends_on:
+      - postgres

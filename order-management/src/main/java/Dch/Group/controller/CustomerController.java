@@ -32,9 +32,11 @@ public class CustomerController {
 
     @PostMapping
     public Mono<CustomerDTO> createCustomer(@RequestBody Customer customer) {
+        System.out.println("Received Customer Password: " + customer.getPassword()); // Log received password
         return customerService.saveCustomer(customer)
                 .map(this::convertToDTO);
     }
+    
 
     @DeleteMapping("/{id}")
     public Mono<CustomerDTO> deleteCustomer(@PathVariable UUID id) {
